@@ -16,7 +16,8 @@
     "url": "https://github.com/pagarme/deplorator/issues"
   },
   "bin": {
-  	"deplorator": "./bin/deplorator.js"
+    "deplorator": "./bin/deplorator.js",
+    "deplorator-cli": "./bin/deplorator-cli.js"
   },
   "homepage": "https://github.com/pagarme/deplorator",
   "dependencies": {
@@ -25,6 +26,7 @@
     "async": "~0.8.0",
     "commander": "~2.2.0",
     "morgan": "~1.0.0",
-    "body-parser": "~1.0.2"
+    "body-parser": "~1.0.2",
+    "request": "~2.34.0"
   }
 }
