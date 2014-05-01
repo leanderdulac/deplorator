@@ -1,0 +1,7 @@
+{
+	"api": {
+		"path": "./deploy/api/",
+		"preDeploy": "touch pre",
+		"postDeploy": "touch post"
+	}
+}
