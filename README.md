@@ -54,12 +54,12 @@ Client Usage
 
 Deplorator has a utility to start a deploy, `deplorator-cli`, that can be used as follow:
 ```sh
-deplorator -e <endpoint> <configuration> <commit>
+deplorator-cli -e <endpoint> <configuration> <commit>
 ```
 
 For example:
 ```sh
-deplorator -e http://localhost:5000 production-api 94fde93
+deplorator-cli -e http://localhost:5000 production-api 94fde93
 ```
 
 Direct Access
