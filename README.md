@@ -72,6 +72,6 @@ curl -XPOST http://<endpoint>/<config>/deploy -d 'commit=<commit sha>'
 
 For example:
 ```sh
-curl -XPOST http://localhost:5000/production-api/deploy -d 'commit=94fde93
+curl -XPOST http://localhost:5000/production-api/deploy -d 'commit=94fde93'
 ```
 
