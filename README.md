@@ -10,13 +10,13 @@ Installation
 ============
 
 To install deplorator, just use npm:
-    npm install -g deplorator
+`npm install -g deplorator`
 
 Server Usage
 ============
 
 To start a server just use the following command:
-    deplorator -p <port> -f <config file>
+`deplorator -p <port> -f <config file>`
 
 Where 5000 is the port to listen to.
 
@@ -24,6 +24,7 @@ Configuration File
 ------------------
 
 The configuration file is as simple as follow:
+```json
 	{
 		"<configuration-name>": {
 			"path": "<local git repo path>",
@@ -31,8 +32,10 @@ The configuration file is as simple as follow:
 			"postDeploy": "<command to be executed after the deploy>"
 		}
 	}
+```
 
 Example:
+```json
 	{
 		"production-api": {
 			"path": "/home/deploy/production-api",
@@ -40,22 +43,23 @@ Example:
 			"postDeploy": "npm install && npm update && pm2 start production-api"
 		}
 	}
+```
 
 Client Usage
 ============
 
 Deplorator has a utility to start a deploy, `deplorator-cli`, that can be used as follow:
-    deplorator -e <endpoint> <configuration> <commit>
+`deplorator -e <endpoint> <configuration> <commit>`
 
 For example:
-	deplorator -e http://localhost:5000 production-api 94fde93
+`deplorator -e http://localhost:5000 production-api 94fde93`
 
 Direct Access
 -------------
 
 You can use deplorator with curl if you want, like this:
-	curl -XPOST http://<endpoint>/<config>/deploy -d 'commit=<commit sha>'
+`curl -XPOST http://<endpoint>/<config>/deploy -d 'commit=<commit sha>'`
 
 For example:
-	curl -XPOST http://localhost:5000/production-api/deploy -d 'commit=94fde93'
+`curl -XPOST http://localhost:5000/production-api/deploy -d 'commit=94fde93`
 
