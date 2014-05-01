@@ -1,6 +1,6 @@
 {
   "name": "deplorator",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "utility for deployment on isolated servers",
   "main": "index.js",
   "scripts": {
