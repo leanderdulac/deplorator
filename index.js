@@ -63,6 +63,11 @@ Deplorator.prototype._deploy = function(res, name, commit, cb) {
 			}, cb);
 		},
 		function(cb) {
+			shellExec(res, shellescape([ 'git', 'fetch' ]), {
+				cwd: config.path
+			}, cb);
+		},
+		function(cb) {
 			shellExec(res, shellescape([ 'git', 'checkout', commit ]), {
 				cwd: config.path
 			}, cb);
