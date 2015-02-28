@@ -49,37 +49,25 @@ var Deplorator = function(port, config) {
 	});
 };
 
-Deplorator.prototype._deploy = function(res, name, commit, cb) {
+Deplorator.prototype._deploy = function(res, name, metadata, cb) {
 	var self = this;
-	var fullName = name + ':' + commit;
 	var config = this.config[name];
 
-	console.log('Deploy start:', fullName)
+	console.log('Deploy start:', name)
+
+	var env = {
+		'DEPL_METADATA_RAW_JSON': JSON.stringify(metadata)
+	};
+
+	for (var key in metadata) {
+		env['DEPL_METADATA_' + key] = metadata[key];
+	}
 
 	async.series([
 		function(cb) {
-			shellExec(res, config.preDeploy, {
-				cwd: config.path
-			}, cb);
-		},
-		function(cb) {
-			shellExec(res, shellescape([ 'git', 'fetch' ]), {
-				cwd: config.path
-			}, cb);
-		},
-		function(cb) {
-			shellExec(res, shellescape([ 'git', 'checkout', commit ]), {
-				cwd: config.path
-			}, cb);
-		},
-		function(cb) {
-			shellExec(res, shellescape([ 'git', 'submodule', 'update' ]), {
-				cwd: config.path
-			}, cb);
-		},
-		function(cb) {
-			shellExec(res, config.postDeploy, {
-				cwd: config.path
+			shellExec(res, config.command, {
+				cwd: config.path,
+				env: env
 			}, cb);
 		}
 	], function(err) {
@@ -101,14 +89,10 @@ Deplorator.prototype.run = function(cb) {
 
 Deplorator.prototype._processDeploy = function(req, res) {
 	var self = this;
-	var name = req.param('id') + ':' + req.param('commit');
+	var name = req.param('id');
 
 	if (!this.config[req.param('id')]) {
 		return res.send(404, 'Invalid configuration: ' + req.param('id') + '.\n')
-	}
-
-	if (!req.param('commit')) {
-		return res.send(400, 'Missing commit SHA!\n');
 	}
 
     res.writeHead(200, {
@@ -116,7 +100,7 @@ Deplorator.prototype._processDeploy = function(req, res) {
 		'Transfer-Encoding': 'chunked'
     });
 
-	this._deploy(res, req.param('id'), req.param('commit'), function(err) {
+	this._deploy(res, req.param('id'), req.param('metadata'), function(err) {
 		if (err) {
 			res.write('\nERR: An error ocurred deploying ' + name + ', check deploy log.\n');
 		} else {

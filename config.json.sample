@@ -1,7 +1,6 @@
 {
 	"api": {
-		"path": "./deploy/api/",
-		"preDeploy": "touch pre",
-		"postDeploy": "touch post"
+		"path": "/home/deploy/api/",
+		"command": "./script/bootstrap.sh"
 	}
 }
