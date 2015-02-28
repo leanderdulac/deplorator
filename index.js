@@ -72,11 +72,11 @@ Deplorator.prototype._deploy = function(res, name, metadata, cb) {
 		}
 	], function(err) {
 		if (err) {
-			console.log('An error ocurred deploying ' + fullName + ':');
+			console.log('An error ocurred deploying ' + name + ':');
 			console.log(err);
 		}
 
-		console.log('Deploy end:', fullName);
+		console.log('Deploy end:', name);
 		console.log('----------------------');
 
 		cb(err);
