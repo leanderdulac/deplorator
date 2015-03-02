@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
@@ -67,7 +68,7 @@ Deplorator.prototype._deploy = function(res, name, metadata, cb) {
 		function(cb) {
 			shellExec(res, config.command, {
 				cwd: config.path,
-				env: env
+				env: _.merge({}, process.env, env)
 			}, cb);
 		}
 	], function(err) {

@@ -1,6 +1,6 @@
 {
   "name": "deplorator",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "utility for deployment on isolated servers",
   "main": "index.js",
   "scripts": {
@@ -21,12 +21,13 @@
   },
   "homepage": "https://github.com/pagarme/deplorator",
   "dependencies": {
-    "express": "~4.1.1",
-    "shell-escape": "~0.1.0",
     "async": "~0.8.0",
-    "commander": "~2.2.0",
-    "morgan": "~1.0.0",
     "body-parser": "~1.0.2",
-    "request": "~2.34.0"
+    "commander": "~2.2.0",
+    "express": "~4.1.1",
+    "lodash": "^3.3.1",
+    "morgan": "~1.0.0",
+    "request": "~2.34.0",
+    "shell-escape": "~0.1.0"
   }
 }
